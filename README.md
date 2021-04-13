@@ -54,3 +54,52 @@ To learn more about deploying a bot to Azure, see [Deploy your bot to Azure](htt
 - [Azure Portal](https://portal.azure.com)
 - [Language Understanding using LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/)
 - [Channels and Bot Connector Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-concepts?view=azure-bot-service-4.0)
+
+
+
+# Bot Framework Emulator
+
+## 事前準備
+
+### BotFramework Emulator
+
+1. Bot Framework Emulator（以下Emulator）をダウンロード（[https://github.com/Microsoft/BotFramework-Emulator/releases]）
+2. ダウンロードしたEmulatorをインストール
+
+### ngrok
+
+1. ngrokをダウンロード（[https://ngrok.com/download]）
+2. zipファイルを展開しPC上のどこかに置く
+3. ２のパスを環境変数Pathに追加
+
+
+
+## Emulatorの設定を変更する
+
+1. Emulatorを起動する
+2. Emulatorの画面左下の歯車マークを押下
+3. テキストボックス「Path to ngrok」の横の「Browse」ボタンを押下するとファイル選択ダイアログが表示されるので、`事前準備-ngrok-2で用意したngrok.exe`を選択する
+4. チェックボックス「Bypass ngrok for local addresses」にチェック
+5. チェックボックス「Run ngrok when the Emulator starts up」にチェック
+6. テキストボックス「localhost override」に`localhost`と入力
+7. テキストボックス「Locale」に`en-US`と入力
+8. User settingsのチェックボックス「Use a sign-in verification code for OAuthCards」にチェック
+9. 「Save」ボタンを押下する
+
+
+
+## Visual StudioでEchoBotを起動する
+
+1. VisualStdioを起動する
+2. EchoBot.shを開く
+3. ソリューションエクスプローラーから`appsettings.json`を開く
+4. `appsettings.json`に記載された`MicrosoftAppId`、`MicrosoftAppPassword`をメモる
+5. 画面上部のボタン「▶IIS Express」を押下。ブラウザが立ち上がりタブ名「Core Bot Sample」が表示されるまで待つ。
+6. Emulatorを起動する
+7. ボタン「Open Bot」を押下する
+8. テキストボックス「Bot URL」に`http://localhost:3978/api/messages`と入力
+9. テキストボックス「Microsoft App ID」に４でメモした`MicrosoftAppId`を入力
+10. テキストボックス「Microsoft App Password」に４でメモした`MicrosoftAppPassword`を入力
+11. ボタン「Connect」を押下
+12. EmulatorのLiveChatタブに`Hello and welcome`と表示されればOK。
+
